@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     public Text roundtext;
     int currentplayer = 1; //whose turn is it?
     public Text playertext;
+    public FireCatapult Player1;
+    public FireCatapult Player2;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player2.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,8 +35,15 @@ public class GameManager : MonoBehaviour
         if (currentplayer == 2)
         {
             currentplayer = 1;
+            Player2.setActive(false);
+            Player1.setActive(true);
             round++;
         }
-        else currentplayer = 2;
+        else
+        {
+            currentplayer = 2;
+            Player1.setActive(false);
+            Player2.setActive(true);
+        }
     }
 }
