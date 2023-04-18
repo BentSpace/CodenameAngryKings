@@ -348,8 +348,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -543.75, y: -11.937}
-  m_SizeDelta: {x: 160, y: 53.874}
+  m_AnchoredPosition: {x: -477.27396, y: -20.442402}
+  m_SizeDelta: {x: 292.9521, y: 70.8848}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &259690925
 MonoBehaviour:
@@ -388,7 +388,10 @@ MonoBehaviour:
 
     Current Player:
 
-    Press SPACE to fire'
+    Press SPACE to fire
+
+    Press Left Mouse
+    Button to place blocks'
 --- !u!222 &259690926
 CanvasRenderer:
   m_ObjectHideFlags: 0
