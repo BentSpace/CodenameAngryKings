@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    int round; // what round are we in?
+    int round = 1; // what round are we in?
     public Text roundtext;
     int currentplayer = 1; //whose turn is it?
     public Text playertext;
@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player2.enabled = false;
+        Player2.setActive(false);
+        Player1.setActive(true);            
     }
 
     // Update is called once per frame

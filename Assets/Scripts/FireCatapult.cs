@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class FireCatapult : MonoBehaviour
 {
-    // public GameObject hinge;
-    // public float fireSpeed = 90;
     Rigidbody catapultRigidbody;
     public float catapultForce = 1000000f;
     bool fired = false;
-    bool active = true;
+    public bool active = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +20,6 @@ public class FireCatapult : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && active)
         {
             Fire();
-
         }
     }
     // Update is called once per frame
@@ -32,7 +29,7 @@ public class FireCatapult : MonoBehaviour
         {
             catapultRigidbody.AddForce(transform.up * catapultForce);
         }
-        // transform.RotateAround(hinge.transform.position, Vector3.forward, fireSpeed * Time.deltaTime);
+
     }
 
     void Fire()
