@@ -39,7 +39,7 @@ public class HealthBar : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         while(differenceHP.fillAmount > remainingHP.fillAmount + 0.015f)
         {
-            differenceHP.fillAmount = Mathf.Lerp(remainingHP.fillAmount, differenceHP.fillAmount, 0.5f);
+            differenceHP.fillAmount = Mathf.Lerp(differenceHP.fillAmount, remainingHP.fillAmount, 0.5f);
             yield return null;
         }
         differenceHP.fillAmount = remainingHP.fillAmount;
