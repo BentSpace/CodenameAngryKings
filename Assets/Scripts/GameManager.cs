@@ -208,4 +208,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public int getCurrentPlayer()
+    {
+        return currentplayer;
+    }
 }
