@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     int round = 1; // what round are we in?
@@ -10,9 +11,9 @@ public class GameManager : MonoBehaviour
     int currentplayer = 1; //whose turn is it?
     public Text playertext;
     bool changeRound = false; // do we change the round after this turn?
-    public FireCatapult Player1;
-    public FireCatapult Player2;
-
+    public HealthSystem Player1;
+    public HealthSystem Player2;
+    int winner = 0; // who won the game?
 
     public enum gameState {PAUSED = -1, GAMESTART, PLAYMENU, ATTACK, AIMING, FIRE, BUILD, GAMEEND};  // game states:
                                                                                         // PAUSED: pause menu loaded, can reset game, go back to main menu
@@ -22,9 +23,9 @@ public class GameManager : MonoBehaviour
                                                                                         // AIMING: state where current player can adjust selected weapon
                                                                                         // FIRE: state where control is taken away while attack plays out
                                                                                         // BUILD: state where current player can place bricks or weapons
-                                                                                         // GAMEEND: results of match are displayed, and a new game can begin
+                                                                                        // GAMEEND: results of match are displayed, and a new game can begin
     gameState state = gameState.GAMESTART; // current game state
-    gameState refState = gameState.GAMESTART; // for checking state of game each frame
+    gameState refState = gameState.GAMESTART; // reference state for checking state of game each frame
     gameState prevState = gameState.GAMESTART; // previous game state for unpausing game
 
     [SerializeField]
@@ -37,12 +38,20 @@ public class GameManager : MonoBehaviour
     GameObject AimMenu;
     [SerializeField]
     GameObject BuildMenu;
+    [SerializeField]
+    GameObject WinScreen;
+    [SerializeField]
+    TextMeshProUGUI WinText;
+    [SerializeField]
+    TextMeshProUGUI WinnerText;
+    [SerializeField]
+    TextMeshProUGUI DrawText;
 
     // Start is called before the first frame update
     void Start()
     {
-        Player2.setActive(false);
-        Player1.setActive(true);            
+        //Player2.setActive(false);
+       // Player1.setActive(true);            
     }
 
     // Update is called once per frame
@@ -59,19 +68,33 @@ public class GameManager : MonoBehaviour
         roundtext.text = round.ToString();
         playertext.text = currentplayer.ToString();
 
+        if(Player1.getCurrentHealth() <= 0 && Player2.getCurrentHealth() <= 0)
+        {
+            winner = 0;
+            AssignState((int)gameState.GAMEEND);
+        }
+        else if (Player1.getCurrentHealth() <= 0)
+        {
+            winner = 2;
+            AssignState((int)gameState.GAMEEND);
+        }
+        else if (Player2.getCurrentHealth() <= 0)
+        {
+            winner = 1;
+            AssignState((int)gameState.GAMEEND);
+        }
+
         switch (state)
         {
             case gameState.PAUSED:
                 PauseMenu.SetActive(true);
                 //STOP THE GAME
                 Time.timeScale = 0;
-                // IF UNPAUSE IS PRESSED
-                    //RETURN TO PREVIOUS STATE
                 break;
             case gameState.GAMESTART:
                 // FLIP A COIN TO DECIDE WHO GOES FIRST
                 // SET CURRENT PLAYER TO WINNER OF COIN TOSS
-                currentplayer = Random.Range(1, 2);
+                currentplayer = Random.Range(1, 3);
                 // GO TO PLAY MENU STATE FOR CURRENT PLAYER
                 AssignState((int)gameState.PLAYMENU);
                 break;
@@ -117,6 +140,20 @@ public class GameManager : MonoBehaviour
                 break;
             case gameState.GAMEEND:
                 // DISPLAY RESULTS OF GAME
+                WinScreen.SetActive(true);
+                if(winner == 0)
+                {
+                    WinText.gameObject.SetActive(false);
+                    WinnerText.gameObject.SetActive(false);
+                    DrawText.gameObject.SetActive(true);
+                }
+                else
+                {
+                    WinText.gameObject.SetActive(true);
+                    WinnerText.gameObject.SetActive(true);
+                    WinnerText.text = winner.ToString();
+                    DrawText.gameObject.SetActive(false);
+                }
                 // IF PLAYER PRESSES NEW GAME
                     // RESTART THE GAME
                 // IF PLAYER PRESSES MAIN MENU
@@ -130,14 +167,14 @@ public class GameManager : MonoBehaviour
         if (currentplayer == 2)
         {
             currentplayer = 1;
-            Player2.setActive(false);
-            Player1.setActive(true);
+           // Player2.setActive(false);
+           // Player1.setActive(true);
         }
         else
         {
             currentplayer = 2;
-            Player1.setActive(false);
-            Player2.setActive(true);
+            //Player1.setActive(false);
+            //Player2.setActive(true);
         }
         if(changeRound)
         {
@@ -164,5 +201,11 @@ public class GameManager : MonoBehaviour
         AttackMenu.SetActive(false);
         AimMenu.SetActive(false) ;
         BuildMenu.SetActive(false);
+        WinScreen.SetActive(false);
+    }
+
+    public void newGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

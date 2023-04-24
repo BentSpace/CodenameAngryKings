@@ -12,9 +12,10 @@ public class Billboard : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
         // Update is called once per frame
-        void Update()
-        {
-            transform.LookAt(target);
-        }
+
+    }
+    void Update()
+    {
+        transform.LookAt(target);
     }
 }
