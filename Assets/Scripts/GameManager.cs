@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
             case gameState.PAUSED:
                 PauseMenu.SetActive(true);
                 //STOP THE GAME
+                Time.timeScale = 0;
                 // IF UNPAUSE IS PRESSED
                     //RETURN TO PREVIOUS STATE
                 break;
@@ -152,6 +153,7 @@ public class GameManager : MonoBehaviour
 
     public void unpause()
     {
+        Time.timeScale = 1;
         state = prevState;
     }
 
