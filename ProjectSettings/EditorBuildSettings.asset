@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Turn System Test.unity
     guid: 0d1ec2d794d9d804e84a2c032080c2de
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/3D Test.unity
     guid: 220fa8c48e6ef40b2b07ff2d7daf13a1
+  - enabled: 1
+    path: Assets/Scenes/ProductionScene.unity
+    guid: 96cc33bed11f24081ac9c66b64b7d6bd
   m_configObjects: {}
