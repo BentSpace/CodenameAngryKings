@@ -9,7 +9,7 @@ public class FireCatapult : MonoBehaviour
     public float catapultForce = 1000000f;
     public float reloadForce = 10f;
     public bool fired = false;
-    public bool empty = false;
+    public bool empty = true;
     public bool active = true;
     public bool testing = true;
  
@@ -20,7 +20,10 @@ public class FireCatapult : MonoBehaviour
     void Start()
     {
         catapultRigidbody = GetComponent<Rigidbody>();
-        
+        if (empty)
+        {
+            ReloadCatapult();
+        }
     }
 
     private void Update()
