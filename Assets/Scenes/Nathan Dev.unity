@@ -604,7 +604,7 @@ PrefabInstance:
     - target: {fileID: 6051871515634637396, guid: af35fc9240d948c469955d4bea010556,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.71
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6051871515745280698, guid: af35fc9240d948c469955d4bea010556,
         type: 3}
@@ -872,6 +872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Balista
       objectReference: {fileID: 0}
+    - target: {fileID: 167964, guid: 100af27711b3f4d4ebc48689ce804635, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 465452, guid: 100af27711b3f4d4ebc48689ce804635, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1073,6 +1077,25 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6591162b735b2457eb220d68a5bd7212, type: 3}
+--- !u!1 &1638207746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6051871515634637397, guid: af35fc9240d948c469955d4bea010556,
+    type: 3}
+  m_PrefabInstance: {fileID: 868466007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1638207751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638207746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a86df37a81c5479980d90502ccdef7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveIncrement: 0.1
 --- !u!4 &1758476089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7132776335994221973, guid: 6591162b735b2457eb220d68a5bd7212,

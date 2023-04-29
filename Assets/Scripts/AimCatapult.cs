@@ -7,7 +7,7 @@ public class AimCatapult : MonoBehaviour
     public float rotationSpeed = 30f; // Degrees per second
     public float rotationAmount = 5f; // Degrees of rotation per key press
 
-    bool active = false;
+    public bool active = false;
 
     private void Update()
     {
