@@ -11,7 +11,7 @@ public class FireCatapult : MonoBehaviour
     public bool fired = false;
     public bool empty = false;
     public bool active = true;
-
+ 
     public GameObject rockPrefab;
 
     public GameObject reloadLocation;
@@ -24,10 +24,7 @@ public class FireCatapult : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && active && !empty)
-        {
-            Fire();
-        }
+
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -43,7 +40,7 @@ public class FireCatapult : MonoBehaviour
         }
     }
 
-    void Fire()
+    public void Fire()
     {
         fired = true;
     }

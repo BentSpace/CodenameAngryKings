@@ -7,15 +7,20 @@ public class AimCatapult : MonoBehaviour
     public float rotationSpeed = 30f; // Degrees per second
     public float rotationAmount = 5f; // Degrees of rotation per key press
 
+    bool active = false;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (active)
         {
-            StartCoroutine(RotateCatapult(-1)); // Rotate left
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            StartCoroutine(RotateCatapult(1)); // Rotate right
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                StartCoroutine(RotateCatapult(-1)); // Rotate left
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                StartCoroutine(RotateCatapult(1)); // Rotate right
+            }
         }
     }
 
@@ -30,6 +35,11 @@ public class AimCatapult : MonoBehaviour
             rotationRemaining -= rotationThisFrame;
             yield return null;
         }
+    }
+
+    public void setActive(bool value)
+    {
+        active = value;
     }
 }
 

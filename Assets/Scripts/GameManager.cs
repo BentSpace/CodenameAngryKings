@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public HealthSystem Player2;
     int winner = 0; // who won the game?
 
+    [SerializeField]
+    Weapon p1currentWeapon; // which weapon is in use right now?
+    [SerializeField]
+    Weapon p2currentWeapon;
     public enum gameState {PAUSED = -1, GAMESTART, PLAYMENU, ATTACK, AIMING, FIRE, BUILD, GAMEEND};  // game states:
                                                                                         // PAUSED: pause menu loaded, can reset game, go back to main menu
                                                                                         // GAMESTART: Start of the game, decide who goes first
@@ -50,8 +54,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Player2.setActive(false);
-       // Player1.setActive(true);            
+       
     }
 
     // Update is called once per frame
@@ -212,5 +215,30 @@ public class GameManager : MonoBehaviour
     public int getCurrentPlayer()
     {
         return currentplayer;
+    }
+
+    public void aimCurrentWeapon(bool value)
+    {
+        switch (currentplayer)
+        {
+            case 1:
+                p1currentWeapon.SendMessage("setActive", value);
+                break;
+            case 2:
+                p2currentWeapon.SendMessage("setActive", value);
+                break;
+        }
+    }
+    public void fireCurrentWeapon()
+    {
+        switch (currentplayer)
+        {
+            case 1:
+                p1currentWeapon.Fire();
+                break;
+            case 2:
+                p2currentWeapon.Fire();
+                break;
+        }
     }
 }
