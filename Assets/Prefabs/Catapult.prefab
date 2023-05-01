@@ -1370,7 +1370,7 @@ MonoBehaviour:
   fired: 0
   empty: 1
   active: 1
-  testing: 1
+  testing: 0
   rockPrefab: {fileID: 357759296329770075, guid: 4cb01e3f83e684acc91df3cc7c683635,
     type: 3}
   reloadLocation: {fileID: 129861072704623933}

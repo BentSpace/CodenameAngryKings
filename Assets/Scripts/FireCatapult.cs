@@ -49,7 +49,6 @@ public class FireCatapult : MonoBehaviour
 
     public void Fire()
     {
-        Debug.Log("FireCatapult Fire()");
         fired = true;
     }
 

@@ -27,7 +27,6 @@ public class Weapon : MonoBehaviour
 
         if(gameObject.tag == "Catapult")
         {
-            Debug.Log("Catapult.fire()");
             catapult.firescript.Fire();
         }    
     }
