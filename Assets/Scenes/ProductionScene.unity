@@ -1534,12 +1534,10 @@ MonoBehaviour:
 
     Current Player:
 
-    SPACE: Fire
-
     L Mouse: Place Blocks
 
-    W,
-    A, S, D: Move Camera
+    W, A, S, D:
+    Move Camera
 
     Q, E: Rotate Camera
 
@@ -5961,7 +5959,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 49.99999
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: 1
@@ -5986,7 +5984,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436235980}
-  m_LocalRotation: {x: 0.21658355, y: 0.000000029294464, z: -0.0000000064989574, w: 0.9762641}
+  m_LocalRotation: {x: 0.21658355, y: 0.000000029294467, z: -0.0000000064989583, w: 0.9762641}
   m_LocalPosition: {x: 1.5, y: 37, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7939,7 +7937,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 234405486}
   m_Follow: {fileID: 234405486}
   m_Lens:
-    FieldOfView: 49.99999
+    FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -7963,7 +7961,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863348725}
-  m_LocalRotation: {x: 0.21658355, y: 0.000000029294464, z: -0.0000000064989574, w: 0.9762641}
+  m_LocalRotation: {x: 0.21658355, y: 0.000000029294467, z: -0.0000000064989583, w: 0.9762641}
   m_LocalPosition: {x: 1.5, y: 37, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
