@@ -6,15 +6,19 @@ public class MoveCatapultStop : MonoBehaviour
     public float minLocalX = -1f; // Set the minimum allowed local x position
     public float maxLocalX = 2f; // Set the maximum allowed local x position
 
+    bool active = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (active)
         {
-            MoveAlongLocalX(moveIncrement);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveAlongLocalX(-moveIncrement);
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                MoveAlongLocalX(moveIncrement);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                MoveAlongLocalX(-moveIncrement);
+            }
         }
     }
 
@@ -24,5 +28,10 @@ public class MoveCatapultStop : MonoBehaviour
         localPosition.x += increment;
         localPosition.x = Mathf.Clamp(localPosition.x, minLocalX, maxLocalX);
         transform.position = transform.parent.TransformPoint(localPosition);
+    }
+
+    public void setActive(bool value)
+    {
+        active = value;
     }
 }

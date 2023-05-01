@@ -235,9 +235,11 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 p1currentWeapon.Fire();
+                Debug.Log("P1fire");
                 break;
             case 2:
                 p2currentWeapon.Fire();
+                Debug.Log("P2fire");
                 break;
         }
     }

@@ -1595,9 +1595,10 @@ GameObject:
   - component: {fileID: 6051871516334075253}
   - component: {fileID: 1571465762759571057}
   - component: {fileID: 7785351691977470578}
+  - component: {fileID: 5556112477121041213}
   m_Layer: 0
   m_Name: Catapult
-  m_TagString: Untagged
+  m_TagString: Catapult
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1653,6 +1654,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: 0
+--- !u!114 &5556112477121041213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051871516334075254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3994140dedff74cbfde249d2681430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firescript: {fileID: 6051871515745280699}
+  aimscript: {fileID: 1571465762759571057}
+  stopscript: {fileID: 6788510633374440235}
+  active: 0
 --- !u!1 &6051871516395179714
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class FireCatapult : MonoBehaviour
     public bool fired = false;
     public bool empty = true;
     public bool active = true;
-    public bool testing = true;
+    public bool testing = false;
  
     public GameObject rockPrefab;
 
@@ -28,7 +28,7 @@ public class FireCatapult : MonoBehaviour
 
     private void Update()
     {
-        if(testing && Input.GetKeyDown(KeyCode.Space) && active && !empty)
+        if((testing && Input.GetKeyDown(KeyCode.Space)) && active && !empty)
         {
             Fire();
         }
@@ -49,6 +49,7 @@ public class FireCatapult : MonoBehaviour
 
     public void Fire()
     {
+        Debug.Log("FireCatapult Fire()");
         fired = true;
     }
 
