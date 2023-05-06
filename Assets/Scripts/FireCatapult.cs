@@ -14,8 +14,17 @@ public class FireCatapult : MonoBehaviour
     public bool testing = false;
  
     public GameObject rockPrefab;
+    public GameObject dicePrefab;
 
     public GameObject reloadLocation;
+    private CameraFollowProjectile cameraFollowScript;
+    public GameObject newProjectileObject;
+
+    private void Awake()
+    {
+        cameraFollowScript = Camera.main.GetComponent<CameraFollowProjectile>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +37,7 @@ public class FireCatapult : MonoBehaviour
 
     private void Update()
     {
-        if((testing && Input.GetKeyDown(KeyCode.Space)) && active && !empty)
+        if(Input.GetKeyDown(KeyCode.Space) && active && !empty)
         {
             Fire();
         }
@@ -50,6 +59,9 @@ public class FireCatapult : MonoBehaviour
     public void Fire()
     {
         fired = true;
+        cameraFollowScript.FollowProjectile();
+        // Set the instantiated object's Transform as the projectile in the CameraFollowProjectile script
+        cameraFollowScript.SetProjectile(newProjectileObject.transform);
     }
 
     public void setActive(bool value)
@@ -78,7 +90,9 @@ public class FireCatapult : MonoBehaviour
 
     private void ReloadCatapult()
     {
-        Instantiate(rockPrefab, reloadLocation.transform.position, Quaternion.identity);
+        newProjectileObject = Instantiate(dicePrefab, reloadLocation.transform.position, Quaternion.identity);
         empty = false;
+       
+        
     }
 }

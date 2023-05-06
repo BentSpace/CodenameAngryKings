@@ -588,7 +588,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571465762759571057, guid: af35fc9240d948c469955d4bea010556,
         type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571465762759571057, guid: af35fc9240d948c469955d4bea010556,
+        type: 3}
       propertyPath: rotationAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556112477121041213, guid: af35fc9240d948c469955d4bea010556,
+        type: 3}
+      propertyPath: active
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6051871514367753825, guid: af35fc9240d948c469955d4bea010556,
@@ -611,6 +621,12 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6051871515745280699, guid: af35fc9240d948c469955d4bea010556,
+        type: 3}
+      propertyPath: dicePrefab
+      value: 
+      objectReference: {fileID: 2371194194196757238, guid: 3dc4b196b2d7d2342ae5c4d1405659ab,
+        type: 3}
     - target: {fileID: 6051871515745280700, guid: af35fc9240d948c469955d4bea010556,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1109,12 +1125,12 @@ PrefabInstance:
     - target: {fileID: 2920588274086756463, guid: 4cb01e3f83e684acc91df3cc7c683635,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 60.44
       objectReference: {fileID: 0}
     - target: {fileID: 2920588274086756463, guid: 4cb01e3f83e684acc91df3cc7c683635,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2920588274086756463, guid: 4cb01e3f83e684acc91df3cc7c683635,
         type: 3}
@@ -1473,6 +1489,7 @@ GameObject:
   - component: {fileID: 2137380572}
   - component: {fileID: 2137380571}
   - component: {fileID: 2137380569}
+  - component: {fileID: 2137380574}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -1553,11 +1570,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137380568}
-  m_LocalRotation: {x: 0.24564573, y: 0, z: 0, w: 0.96935964}
-  m_LocalPosition: {x: 0, y: 26.76, z: -76.3}
+  m_LocalRotation: {x: -0.04218231, y: 0.7058475, z: -0.04218231, w: -0.7058475}
+  m_LocalPosition: {x: 67.35, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 28.44, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.84, y: 270, z: 0}
+--- !u!114 &2137380574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137380568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c329ab14edfc43f7bd2cf9d8d6b236c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  followDuration: 5
+  offset: {x: 10, y: 0, z: 0}
