@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     public HealthSystem Player2;
     int winner = 0; // who won the game?
 
+    public AudioSource backgroundMusic;
+    public AudioSource backgroundAmbience;
+    public AudioSource blockPlaceSE;
+
     [SerializeField]
     Weapon p1currentWeapon; // which weapon is in use right now?
     [SerializeField]
@@ -54,7 +58,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        backgroundAmbience.Play();
+        backgroundMusic.Play();
     }
 
     // Update is called once per frame
@@ -90,7 +95,10 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case gameState.PAUSED:
+
                 PauseMenu.SetActive(true);
+                backgroundMusic.Pause();
+                backgroundAmbience.Pause();
                 //STOP THE GAME
                 Time.timeScale = 0;
                 break;
@@ -193,6 +201,8 @@ public class GameManager : MonoBehaviour
 
     public void unpause()
     {
+        backgroundAmbience.Play();
+        backgroundMusic.Play();
         Time.timeScale = 1;
         state = prevState;
     }

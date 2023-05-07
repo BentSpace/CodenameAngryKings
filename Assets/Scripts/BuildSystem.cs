@@ -76,6 +76,8 @@ public class BuildSystem : MonoBehaviour
                 }
             }
 
+
+            gm.blockPlaceSE.Play();
             pointText.text = Players[currPlayer].getValue().ToString();
         }
     }
