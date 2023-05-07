@@ -7,14 +7,14 @@ public class CameraControl : MonoBehaviour
 {
     [SerializeField] GameManager gm;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
-    [SerializeField] private Vector3 defaultCameraPos = new (1.5f, 30f, -75f);
+    [SerializeField] private Vector3 defaultCameraPos = new (0f, 30f, -125f);
     [SerializeField] private float fovMin = 5;
     [SerializeField] private float fovMax = 50;
 
     private int currentTurn;    //should check whose turn it is
     private float targetFOV = 50;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update.
     void Start()
     {
         currentTurn = gm.getCurrentPlayer();

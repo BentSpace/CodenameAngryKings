@@ -6,8 +6,8 @@ using UnityEngine;
 public class FireCatapult : MonoBehaviour
 {
     Rigidbody catapultRigidbody;
-    public float catapultForce = 1000000f;
-    public float reloadForce = 10f;
+    public float catapultForce = 500000f;
+    public float reloadForce = 10000f;
     public bool fired = false;
     public bool empty = true;
     public bool active = true;
@@ -19,6 +19,10 @@ public class FireCatapult : MonoBehaviour
     public GameObject reloadLocation;
     private CameraFollowProjectile cameraFollowScript;
     public GameObject newProjectileObject;
+    
+    public float minCatapultForce = 500000f;
+    public float maxCatapultForce = 2000000f;
+    public float forceIncrement = 100000f;
 
     private void Awake()
     {
@@ -37,9 +41,22 @@ public class FireCatapult : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && active && !empty)
+        if(testing && Input.GetKeyDown(KeyCode.Space) && active && !empty)
         {
             Fire();
+        }
+        
+        // Handle force modification inputs
+        if (active)
+        {
+            if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.Equals))
+            {
+                IncreaseForce();
+            }
+            else if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.Underscore))
+            {
+                DecreaseForce();
+            }
         }
     }
     // Update is called once per frame
@@ -94,5 +111,14 @@ public class FireCatapult : MonoBehaviour
         empty = false;
        
         
+    }
+    public void IncreaseForce()
+    {
+        catapultForce = Mathf.Min(maxCatapultForce, catapultForce + forceIncrement); // Increase force by the increment, up to the maximum force limit
+    }
+
+    public void DecreaseForce()
+    {
+        catapultForce = Mathf.Max(minCatapultForce, catapultForce - forceIncrement); // Decrease force by the increment, down to the minimum force limit
     }
 }
