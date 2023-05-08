@@ -1702,6 +1702,9 @@ MonoBehaviour:
     type: 3}
   reloadLocation: {fileID: 129861072704623933}
   newProjectileObject: {fileID: 0}
+  minCatapultForce: 500000
+  maxCatapultForce: 2000000
+  forceIncrement: 100000
 --- !u!54 &6051871515745280698
 Rigidbody:
   m_ObjectHideFlags: 0
