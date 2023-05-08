@@ -85,4 +85,9 @@ public class BuildSystem : MonoBehaviour
     {
         active = value;
     }
+
+    public void resetPoints()
+    {
+        Players[gm.getCurrentPlayer() - 1].setValue(100);
+    }
 }
