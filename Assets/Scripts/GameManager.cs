@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI DrawText;
 
+    public TurnHighlightController king1HighlightController;
+    public TurnHighlightController king2HighlightController;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +111,14 @@ public class GameManager : MonoBehaviour
                 currentplayer = Random.Range(1, 3);
                 // GO TO PLAY MENU STATE FOR CURRENT PLAYER
                 AssignState((int)gameState.PLAYMENU);
+                if (currentplayer == 1)
+                {
+                    king1HighlightController.SetPlayerTurn(true);
+                }
+                else
+                {
+                    king2HighlightController.SetPlayerTurn(true);
+                }
                 break;
             case gameState.PLAYMENU:
                 // DRAW MENU
@@ -178,12 +189,16 @@ public class GameManager : MonoBehaviour
         if (currentplayer == 2)
         {
             currentplayer = 1;
+            king1HighlightController.SetPlayerTurn(true);
+            king2HighlightController.SetPlayerTurn(false);
            // Player2.setActive(false);
            // Player1.setActive(true);
         }
         else
         {
             currentplayer = 2;
+            king2HighlightController.SetPlayerTurn(true);
+            king1HighlightController.SetPlayerTurn(false);
             //Player1.setActive(false);
             //Player2.setActive(true);
         }
