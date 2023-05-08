@@ -24,10 +24,10 @@ public class FireCatapult : MonoBehaviour
     public float maxCatapultForce = 2000000f;
     public float forceIncrement = 100000f;
 
-    private void Awake()
-    {
-        cameraFollowScript = Camera.main.GetComponent<CameraFollowProjectile>();
-    }
+    // private void Awake()
+    // {
+    //     // cameraFollowScript = GameObject.Find("CameraSystem").GetComponent<CameraFollowProjectile>();
+    // }
 
     // Start is called before the first frame update
     void Start()
@@ -76,9 +76,9 @@ public class FireCatapult : MonoBehaviour
     public void Fire()
     {
         fired = true;
-        cameraFollowScript.FollowProjectile();
+        // cameraFollowScript.FollowProjectile();
         // Set the instantiated object's Transform as the projectile in the CameraFollowProjectile script
-        cameraFollowScript.SetProjectile(newProjectileObject.transform);
+        // cameraFollowScript.SetProjectile(newProjectileObject.transform);
     }
 
     public void setActive(bool value)
