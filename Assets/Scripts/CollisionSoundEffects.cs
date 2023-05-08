@@ -5,8 +5,6 @@ using UnityEngine;
 public class CollisionSoundEffects : MonoBehaviour
 {
 
-    public AudioSource soundEffect;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +17,13 @@ public class CollisionSoundEffects : MonoBehaviour
         
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        GetComponent<AudioSource>().Play();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        soundEffect.Play();
+        GetComponent<AudioSource>().Play();
     }
 }
