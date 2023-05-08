@@ -10,7 +10,8 @@ public class CameraControl : MonoBehaviour
     [SerializeField] private Vector3 defaultCameraPos = new (0f, 30f, -125f);
     [SerializeField] private float fovMin = 5;
     [SerializeField] private float fovMax = 50;
-
+    [SerializeField] Transform P1Catapult;
+    [SerializeField] Transform P2Catapult;
     private int currentTurn;    //should check whose turn it is
     private float targetFOV = 50;
 
@@ -73,6 +74,23 @@ public class CameraControl : MonoBehaviour
     {
         transform.position = defaultCameraPos;
         transform.eulerAngles = new Vector3(0, 0, 0);
+        targetFOV = fovMax;
+        virtualCamera.m_Lens.FieldOfView = targetFOV;
+    }
+    public void aimCamera()
+    {
+        Vector3 offset = new Vector3(0, 30f, 0);
+        switch (gm.getCurrentPlayer())
+        {
+            case 1:
+                transform.position = P1Catapult.position + offset;
+                transform.eulerAngles = new Vector3(0, 90, 0);
+                break;
+            case 2:
+                transform.position = P2Catapult.position + offset;
+                transform.eulerAngles = new Vector3(0, -90, 0);
+                break;
+        }
         targetFOV = fovMax;
         virtualCamera.m_Lens.FieldOfView = targetFOV;
     }
