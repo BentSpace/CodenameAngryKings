@@ -12,13 +12,12 @@ public class CameraFollowProjectile : MonoBehaviour
 
     void Start()
     {
-        offset = transform.position - projectile.position;
-        timer = 0.0f;
         isFollowing = false;
     }
 
     public void FollowProjectile()
     {
+        Debug.Log("FollowProjectile");
         // Store the original position of the camera
         originalPosition = transform.position;
         isFollowing = true;
@@ -45,6 +44,7 @@ public class CameraFollowProjectile : MonoBehaviour
     public void SetProjectile(Transform newProjectile)
     {
         projectile = newProjectile;
+        offset = transform.position - projectile.position;
     }
 }
 
