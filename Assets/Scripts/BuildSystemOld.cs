@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
@@ -56,7 +55,7 @@ public class BuildSystemOld : MonoBehaviour
         if (active)
         {
             int currPlayer = gm.getCurrentPlayer() -1;
-            if (Input.GetMouseButtonDown(0) && Players[currPlayer].getValue() - buildingValues[selectIndex] >= 0)
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && Players[currPlayer].getValue() - buildingValues[selectIndex] >= 0)
             {
                 RaycastHit hit;
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
