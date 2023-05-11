@@ -17,3 +17,4 @@ public class TurnHighlightController : MonoBehaviour
         isPlayerTurn = isTurn;
     }
 }
+

@@ -37,6 +37,12 @@ public class BuildSystem : MonoBehaviour
     bool active = false;
 
     public float blockPlacementDistance = 5f;
+    
+    private GameObject currentObject;
+    private float currentRotation = 0f;
+    public float rotationSpeed = 10f; // Degrees per frame
+    
+    private GameObject previewObject;
 
     private Camera mainCamera;
     // Start is called before the first frame update
@@ -48,39 +54,79 @@ public class BuildSystem : MonoBehaviour
         Players = new PointSystem[2] { Player1, Player2 };
         mainCamera = Camera.main;
     }
+    
+    private void SetCollidersEnabled(GameObject obj, bool enabled)
+    {
+        foreach (Collider collider in obj.GetComponentsInChildren<Collider>())
+        {
+            collider.enabled = enabled;
+        }
+    }
 
-    // Update is called once per frame
+
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
     void Update()
     {
         int selectIndex = currentSelection.value;
+        int currPlayer = gm.getCurrentPlayer() - 1;
+        Vector3 newPosition = Vector3.zero;
+
         if (active)
         {
-            int currPlayer = gm.getCurrentPlayer() -1;
-            if (Input.GetMouseButtonDown(0) && Players[currPlayer].getValue() - buildingValues[selectIndex] >= 0)
+            RaycastHit hit;
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~LayerMask.GetMask("Preview")))
             {
-                RaycastHit hit;
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                newPosition = hit.point + hit.normal * (buildingHeights[selectIndex] / 2 + 0.01f);
 
-                if (Physics.Raycast(ray, out hit))
+                // Add the grid snapping code here
+                float gridSize = 1.0f;
+                newPosition.x = Mathf.Round(newPosition.x / gridSize) * gridSize;
+                newPosition.y = Mathf.Round(newPosition.y / gridSize) * gridSize;
+                newPosition.z = Mathf.Round(newPosition.z / gridSize) * gridSize;
+
+                if (previewObject == null)
                 {
-                    Vector3 newPosition = hit.point + hit.normal * (buildingHeights[selectIndex] / 2 + 0.01f);
-
-                    // Add the grid snapping code here
-                    float gridSize = 1.0f; // Change this value to modify the grid size
-                    newPosition.x = Mathf.Round(newPosition.x / gridSize) * gridSize;
-                    newPosition.y = Mathf.Round(newPosition.y / gridSize) * gridSize;
-                    newPosition.z = Mathf.Round(newPosition.z / gridSize) * gridSize;
-
-                    Instantiate(buildingPrefabs[selectIndex], newPosition, Quaternion.identity);
-                    Players[currPlayer].setValue(Players[currPlayer].getValue() - buildingValues[selectIndex]);
+                    previewObject = Instantiate(buildingPrefabs[selectIndex], newPosition, Quaternion.identity);
+                    SetLayerRecursively(previewObject, LayerMask.NameToLayer("Preview"));
+                    // Ignore physics simulation for the preview object
+                    Rigidbody rb = previewObject.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
+                        rb.isKinematic = true;
+                        SetCollidersEnabled(previewObject, false);
+                    }
+                }
+                else
+                {
+                    previewObject.transform.position = newPosition;
                 }
             }
-
-
-            gm.blockPlaceSE.Play();
-            pointText.text = Players[currPlayer].getValue().ToString();
+        }
+        else
+        {
+            // Destroy the preview object if the building system is deactivated
+            if (previewObject != null)
+            {
+                Destroy(previewObject);
+            }
         }
     }
+
+
+
+
+
     public void setActive(bool value)
     {
         active = value;
