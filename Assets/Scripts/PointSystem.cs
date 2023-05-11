@@ -5,7 +5,7 @@ using UnityEngine;
 public class PointSystem : MonoBehaviour
 {
     [SerializeField]
-    int value = 100;
+    int points = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +14,24 @@ public class PointSystem : MonoBehaviour
 
     public void setValue(int val)
     {
-        value = val;
+        points = val;
     }
 
     public int getValue()
     {
-        return value;
+        return points;
     }
+    
+    public void DecreasePoints(int value)
+    {
+        Debug.Log("Decrease points");
+        points -= value;
+
+        // Check to make sure points doesn't fall below 0
+        if (points < 0)
+        {
+            points = 0;
+        }
+    }
+
 }

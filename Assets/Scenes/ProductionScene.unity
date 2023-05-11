@@ -1328,13 +1328,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gm: {fileID: 636636935}
   defaultVirtualCamera: {fileID: 1863348726}
-  diceVirtualCamera: {fileID: 912300665}
+  followVirtualCamera: {fileID: 912300665}
   catapultVirtualCameras:
   - {fileID: 957182115}
   - {fileID: 51556079}
   defaultCameraPos: {x: 0, y: 30, z: -125}
   fovMin: 5
   fovMax: 50
+  diceTransform: {fileID: 0}
+  followTime: 5
 --- !u!1 &243470145
 GameObject:
   m_ObjectHideFlags: 0
@@ -7191,7 +7193,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1436235980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b403755b45660d45a5aa3e936bb6e31, type: 3}
+  m_Script: {fileID: 11500000, guid: 9238f79538ba64521b23f5010e0de9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 636636935}
@@ -7209,7 +7211,6 @@ MonoBehaviour:
   Player2: {fileID: 704714481}
   pointText: {fileID: 59668355}
   blockPlacementDistance: 5
-  rotationSpeed: 10
 --- !u!81 &1436235983
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7268,7 +7269,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436235980}
-  m_LocalRotation: {x: 0.21658355, y: -0.000000029294464, z: 0.0000000064989574, w: 0.9762641}
+  m_LocalRotation: {x: 0.21658352, y: 0.0000000034132466, z: -7.5722717e-10, w: 0.9762641}
   m_LocalPosition: {x: 0, y: 52, z: -140}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9527,7 +9528,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863348725}
-  m_LocalRotation: {x: 0.21658355, y: -0.000000029294464, z: 0.0000000064989574, w: 0.9762641}
+  m_LocalRotation: {x: 0.21658352, y: 0.0000000034132466, z: -7.5722717e-10, w: 0.9762641}
   m_LocalPosition: {x: 0, y: 52, z: -140}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9549,6 +9550,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 6051871515745280699, guid: af35fc9240d948c469955d4bea010556,
+        type: 3}
+      propertyPath: cameraControlScript
+      value: 
+      objectReference: {fileID: 234405487}
     - target: {fileID: 6051871516334075253, guid: af35fc9240d948c469955d4bea010556,
         type: 3}
       propertyPath: m_RootOrder
@@ -10943,6 +10949,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6051871515745280699, guid: af35fc9240d948c469955d4bea010556,
+        type: 3}
+      propertyPath: cameraControlScript
+      value: 
+      objectReference: {fileID: 234405487}
     - target: {fileID: 6051871515745280700, guid: af35fc9240d948c469955d4bea010556,
         type: 3}
       propertyPath: m_LocalPosition.y

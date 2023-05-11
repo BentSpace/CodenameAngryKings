@@ -17,8 +17,10 @@ public class FireCatapult : MonoBehaviour
     public GameObject dicePrefab;
 
     public GameObject reloadLocation;
-    private CameraFollowProjectile cameraFollowScript;
+    // private CameraFollowProjectile cameraFollowScript;
     public GameObject newProjectileObject;
+    public CameraControlNew cameraControlScript;
+
     
     public float minCatapultForce = 500000f;
     public float maxCatapultForce = 2000000f;
@@ -76,6 +78,7 @@ public class FireCatapult : MonoBehaviour
     public void Fire()
     {
         fired = true;
+        cameraControlScript.FollowDiceForSeconds();
         // cameraFollowScript.FollowProjectile();
         // Set the instantiated object's Transform as the projectile in the CameraFollowProjectile script
         // cameraFollowScript.SetProjectile(newProjectileObject.transform);
@@ -109,8 +112,7 @@ public class FireCatapult : MonoBehaviour
     {
         newProjectileObject = Instantiate(dicePrefab, reloadLocation.transform.position, Quaternion.identity);
         empty = false;
-       
-        
+        cameraControlScript.diceTransform = newProjectileObject.transform;
     }
     public void IncreaseForce()
     {

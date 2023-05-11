@@ -8,7 +8,7 @@ public class CameraControlNew : MonoBehaviour
 {
     [SerializeField] GameManager gm;
     [SerializeField] private CinemachineVirtualCamera defaultVirtualCamera;
-    [SerializeField] private CinemachineVirtualCamera diceVirtualCamera;
+    [SerializeField] private CinemachineVirtualCamera followVirtualCamera;
     [SerializeField] private CinemachineVirtualCamera[] catapultVirtualCameras;
     [SerializeField] private Vector3 defaultCameraPos = new Vector3(0f, 30f, -125f);
     [SerializeField] private float fovMin = 5;
@@ -16,6 +16,8 @@ public class CameraControlNew : MonoBehaviour
 
     private int currentTurn;    //should check whose turn it is
     private float targetFOV = 50;
+    public Transform diceTransform;
+    public float followTime = 5f; // Time to follow the dice
 
     // Start is called before the first frame update.
     void Start()
@@ -85,7 +87,7 @@ public class CameraControlNew : MonoBehaviour
     void SwitchToDefaultCamera()
     {
         defaultVirtualCamera.Priority = 10;
-        diceVirtualCamera.Priority = 0;
+        followVirtualCamera.Priority = 0;
         foreach (var camera in catapultVirtualCameras)
         {
             camera.Priority = 0;
@@ -99,29 +101,41 @@ public class CameraControlNew : MonoBehaviour
 
     public void OnFireButtonPressed()
     {
-        FollowDiceForSeconds(5);
+        FollowDiceForSeconds();
     }
 
     // Switch to the given player's catapult virtual camera
     void SwitchToCatapultCamera(int playerIndex)
     {
         defaultVirtualCamera.Priority = 0;
-        diceVirtualCamera.Priority = 0;
+        followVirtualCamera.Priority = 0;
         catapultVirtualCameras[playerIndex].Priority = 10;
     }
 
     // Switch to the dice virtual camera, wait for a certain number of seconds, then switch back to the default camera
-    async void FollowDiceForSeconds(int seconds)
+    
+
+    public void FollowDiceForSeconds()
     {
-        defaultVirtualCamera.Priority = 0;
-        foreach (var camera in catapultVirtualCameras)
+        StartCoroutine(FollowDiceCoroutine());
+    }
+
+    private IEnumerator FollowDiceCoroutine()
+    {
+        if (diceTransform == null)
         {
-            camera.Priority = 0;
+            yield break; // Exit if the dice transform hasn't been set
         }
-        diceVirtualCamera.Priority = 10;
 
-        await Task.Delay(seconds * 1000);
+        // Set the target of the follow virtual camera to the dice
+        followVirtualCamera.Follow = diceTransform;
+        followVirtualCamera.Priority = 20;
 
+        yield return new WaitForSeconds(followTime); // Wait for the specified number of seconds
+
+        // Switch back to the default view
+        followVirtualCamera.Priority = 10;
         SwitchToDefaultCamera();
     }
+
 }

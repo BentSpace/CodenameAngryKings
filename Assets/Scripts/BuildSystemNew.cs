@@ -89,7 +89,7 @@ public class BuildSystem : MonoBehaviour
             {
                 newPosition = hit.point + hit.normal * (buildingHeights[selectIndex] / 2 + 0.01f);
 
-                // Add the grid snapping code here
+                // grid snapping
                 float gridSize = 1.0f;
                 newPosition.x = Mathf.Round(newPosition.x / gridSize) * gridSize;
                 newPosition.y = Mathf.Round(newPosition.y / gridSize) * gridSize;
@@ -111,6 +111,18 @@ public class BuildSystem : MonoBehaviour
                 {
                     previewObject.transform.position = newPosition;
                 }
+                
+                if (Input.GetMouseButtonDown(0) && Players[currPlayer].getValue() - buildingValues[selectIndex] >= 0)
+                {
+                    // Instantiate the actual object and destroy the preview
+                    GameObject actualObject = Instantiate(buildingPrefabs[selectIndex], newPosition, Quaternion.identity);
+                    Destroy(previewObject);
+                    // Reset the layer of the actual object
+                    SetLayerRecursively(actualObject, 0); // assuming 0 is the default layer
+                    
+                    // Subtract the cost of the building from the current player's points
+                    Players[currPlayer].DecreasePoints(buildingValues[selectIndex]);
+                }
             }
         }
         else
@@ -122,6 +134,7 @@ public class BuildSystem : MonoBehaviour
             }
         }
     }
+
 
 
 
